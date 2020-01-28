@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<plugin id="{plugin-name}">
+  <title>
+    <en>{plugin-description}</en>
+  </title>
+  <url>plugins/{plugin-name}/UI/index.html</url>
+  <detailedViewUrl>plugins/{plugin-name}/UI/index.html</detailedViewUrl>
+  <height>792</height>
+</plugin>
+

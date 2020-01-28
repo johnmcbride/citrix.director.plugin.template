@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="ClientDetails" columns="3">
+  <row>
+    <panel type="LogonDuration" colspan="3"/>
+  </row>
+  <row>
+    <panel type="Personalization"/>
+    <panel pluginId="xdhdxmonitor" colspan="2"/>
+  </row>
+  <row>
+    <panel pluginId="hdxInsightUD" colspan="3"/>
+  </row>
+  <row>
+    <panel pluginId="{plugin-name}" />
+  </row>
+</page>

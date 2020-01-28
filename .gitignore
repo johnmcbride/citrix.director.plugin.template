@@ -1,0 +1,6 @@
+#directories
+obj
+bin
+
+#files
+**.zip

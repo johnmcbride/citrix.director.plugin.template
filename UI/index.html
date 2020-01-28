@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .button-default {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button-blue {
+            background-color: #008CBA;
+        }
+    </style>
+    <script type="text/javascript">
+	//function that makes a http post call to the example api method of the plugin Dll.
+	//the api method returns a string which we will just show in a div on the page.
+        function callDirectorPluginTestMethod() {
+
+            var xmlHttp = null;
+            var hostname = window.location.host
+            //building the URL to the API endpoint
+            theUrl = 'http://' + hostname + '/Director/service.svc/web/ExampleTestMethod';
+            //creating the xml http object to make the api call.
+            xmlHttp = new XMLHttpRequest();
+            //telling the object we will be doing a POST
+            xmlHttp.open("POST", theUrl, false);
+            //specifying we are going to send JSON data
+            xmlHttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+            //set the XSRF token, this handle the authentication/ We grab this from the current director cookie.
+            xmlHttp.setRequestHeader("X-XSRF-Token", this.parent.window.document.cookie.split("KEY=")[1].split(";")[0]);
+            //send the request
+            xmlHttp.send();
+
+            //get the JSON data from the response and create the JSON oject
+            var jsonobject = JSON.parse(xmlHttp.responseText);
+            //pull out the result and put it into a DIV on the page
+            returnValueDiv.innerText = jsonobject.ExampleTestMethodResult;
+
+            //show the raw value
+            divRawValue.innerText = xmlHttp.responseText;
+            divRawContainer.style.display = "block";
+        }
+
+        //function that makes a http post call to the example api method of the plugin Dll.
+        //the api method returns a string which we will just show in a div on the page.
+        function getUserGroups() {
+
+            var xmlHttp = null;
+            var hostname = window.location.host
+            //building the URL to the API endpoint
+            theUrl = 'http://' + hostname + '/Director/service.svc/web/ExampleGetUserGroups';
+            //creating the xml http object to make the api call.
+            xmlHttp = new XMLHttpRequest();
+            //telling the object we will be doing a POST
+            xmlHttp.open("POST", theUrl, false);
+            //specifying we are going to send JSON data
+            xmlHttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+            //set the XSRF token, this handle the authentication/ We grab this from the current director cookie.
+            xmlHttp.setRequestHeader("X-XSRF-Token", this.parent.window.document.cookie.split("KEY=")[1].split(";")[0]);
+
+            //ExampleAPIMethod2 expects we pass a user parameter, so lets build that json string to pass
+            //the parameter name is "User" in the example
+            parametersToPass = ('{"User":"john"}');
+            //send the request
+            xmlHttp.send(parametersToPass);
+
+            //get the JSON data from the response and create the JSON oject
+            var jsonobject = JSON.parse(xmlHttp.responseText);
+            //pull out the result and put it into a DIV on the page
+            //loop through the groups returned
+            returnValueDiv.innerText = "";
+            for (var count = 0; count < jsonobject.ExampleGetUserGroupsResult.length; count++) {
+                returnValueDiv.innerHTML += jsonobject.ExampleGetUserGroupsResult[count] + "<br>";
+
+            }
+
+            //show the raw value
+            divRawValue.innerText = xmlHttp.responseText;
+            divRawContainer.style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h3>This is a simple UI for the sample plugin</h3>
+
+        <br />
+        <button class="button-default" onclick="callDirectorPluginTestMethod()">Click to call ExampleAPIMethod1<br>(Return string)</button>
+        <button class="button-default button-blue" onclick="getUserGroups()">Click to call ExampleAPIMethod2<br>(Return Groups)</button>
+        <br><br>
+        <u>The return value from the API call is:</u>
+        <div id="returnValueDiv" style="margin-top:10px;color:black;font-size:15pt;font-family:tahoma"></div>
+
+        <div id="divRawContainer" style="display:none;margin-top:25px">
+            <u>The raw return value is below:</u>
+            <div id="divRawValue" style="margin-top:10px"></div>
+        </div>
+    </center>
+</body>
+</html>

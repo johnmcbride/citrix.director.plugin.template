@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="Trends">
+    <row>
+      <panel type="Sessions"/>
+		  <panel type="ConnectionFailures"/>
+		  <panel type="LogonPerformance"/>
+		  <panel type="RDSLoadEvaluation"/>
+		  <panel type="HostedApplicationsUsage"/>
+		  <panel type="VDIOSVMUsage"/>
+      <panel pluginId="hdxInsight" />
+      <panel pluginId="{plugin-name}" />
+    </row>
+</page>

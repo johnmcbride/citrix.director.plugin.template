@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="Dashboard" columns="1">
+    <row>
+      <panel type="Usage"/>
+    </row>
+    <row>
+      <panel type="LogonDuration"/>
+    </row>
+    <row>
+      <panel type="Infrastructure"/>
+    </row>
+  <row>
+    <panel pluginId="{plugin-name}" />
+  </row>
+</page>

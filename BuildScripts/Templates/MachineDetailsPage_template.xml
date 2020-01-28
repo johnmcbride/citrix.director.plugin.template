@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page id="MachineDetails" columns="3">
+  <row>
+    <panel type="Hotfixes" colspan="3"/>
+  </row>
+  <row>
+    <panel pluginId="{plugin-name}" />
+  </row>
+</page>
